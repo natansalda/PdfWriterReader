@@ -27,7 +27,7 @@ public class PdfCwiczenia {
 		Document pdf = null;
 		Paragraph paragraph = null;
 		Date date;
-		Font fnt10n, fnt10b, fnt12n;
+		Font fnt10n, fnt10b, fnt12n, fnt18n;
 
 		try {
 			date = new Date();
@@ -45,18 +45,19 @@ public class PdfCwiczenia {
 			System.out.println("PDF file: " + args[0]);
 			System.out.println("Font file: " + args[1]);
 
-			// wyjœciowy PDF:
+			// output PDF:
 			pdf = new Document(PageSize.A4);
 			writer = PdfWriter.getInstance(pdf, FileFactory.newOutputStream(args[0]));
 
-			// Czcionki:
+			// Fonts:
 			FontFactory.register(args[1], "pdfFont");
 			Font font = FontFactory.getFont("pdfFont", BaseFont.CP1250, BaseFont.EMBEDDED);
 			BaseFont bf = font.getBaseFont();
 
-			fnt12n = new Font(bf, 12f, Font.NORMAL, BaseColor.BLACK);
+			fnt12n = new Font(bf, 12f, Font.NORMAL, BaseColor.GREEN);
 			fnt10n = new Font(bf, 10f, Font.NORMAL, BaseColor.BLACK);
-			fnt10b = new Font(bf, 10f, Font.BOLDITALIC, BaseColor.BLACK);
+			fnt10b = new Font(bf, 10f, Font.BOLDITALIC, BaseColor.BLUE);
+			fnt18n = new Font(bf, 18f, Font.BOLD, BaseColor.RED);
 
 			// PDF
 			writer.setPdfVersion(PdfWriter.VERSION_1_7);
