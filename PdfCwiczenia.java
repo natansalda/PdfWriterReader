@@ -1,5 +1,5 @@
-//* Æwiczenia w tworzeniu PDF
-//* Dane do zapisu znajduj¹ siê w kodzie programu.
+//* Excersises in creating PDF files.
+//* 
 //* Autor: Natalia Nazaruk Data: 16.02.2018
 //*
 
@@ -35,15 +35,15 @@ public class PdfCwiczenia {
 			System.out.println("Start: " + startDate);
 
 			if (args.length < 1) {
-				System.out.println("Program przyjmuje 2 argumenty: " + "\n args[0] - œcie¿ka do wyjœciowego pliku  PDF,"
-						+ "\n args[1] - œcie¿ka do pliku czcionki.");
+				System.out.println("Program gets 2 arguments: " + "\n args[0] - path to output PDF file,"
+						+ "\n args[1] - path to font file.");
 				System.exit(20);
 			}
 			String os = System.getProperty("os.name");
 			System.out.println("System: " + os);
 
-			System.out.println("Plik PDF: " + args[0]);
-			System.out.println("Plik czcionki: " + args[1]);
+			System.out.println("PDF file: " + args[0]);
+			System.out.println("Font file: " + args[1]);
 
 			// wyjœciowy PDF:
 			pdf = new Document(PageSize.A4);
