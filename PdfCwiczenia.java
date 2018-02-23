@@ -16,6 +16,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -54,7 +55,7 @@ public class PdfCwiczenia {
 			Font font = FontFactory.getFont("pdfFont", BaseFont.CP1250, BaseFont.EMBEDDED);
 			BaseFont bf = font.getBaseFont();
 
-			fnt12n = new Font(bf, 12f, Font.NORMAL, BaseColor.GREEN);
+			fnt12n = new Font(bf, 14f, Font.BOLD, BaseColor.BLACK);
 			fnt10n = new Font(bf, 10f, Font.NORMAL, BaseColor.BLACK);
 			fnt10b = new Font(bf, 10f, Font.BOLDITALIC, BaseColor.BLUE);
 			fnt18n = new Font(bf, 18f, Font.BOLD, BaseColor.RED);
@@ -64,26 +65,26 @@ public class PdfCwiczenia {
 			writer.createXmpMetadata();
 			writer.setFullCompression();
 
-			pdf.addTitle("Pierwszy PDF");
-			pdf.addAuthor("Asseco DATA SYSTEMS SA");
-			pdf.addSubject("Przyk³ad tworzenia pliku PDF");
+			pdf.addTitle("This is a test PDF");
+			pdf.addAuthor("Natalia Nazaruk");
+			pdf.addSubject("This is an example of PDF creation");
 			pdf.addKeywords("Metadata, Java, iText, PDF");
-			pdf.addCreator("Program: FirstPdf");
+			pdf.addCreator("Program: PdfCwiczenia");
 
 			pdf.setMargins(50, 40, 26, 54);
 			pdf.open();
 			pdf.newPage();
 
-			// I sposób definiowania paragrafu:
+			// I way of how to define paragraph:
 			paragraph = new Paragraph();
 			paragraph.setLeading(20f);
 			paragraph.setFont(fnt12n);
 			paragraph.setAlignment(Element.ALIGN_CENTER);
-			paragraph.add("Pierwsza strona\nTo jest pierwsza próba utworzenia pliku PDF");
+			paragraph.add("---First page---\nThis is first try of creating PDF file with Java");
 			pdf.add(paragraph);
 			paragraph.clear();
 
-			// II sposób definiowania paragrafu:
+			// II way of how to define paragraph:
 			pdf.add(new Paragraph("Witaj w piêknym œwiecie plików PDF!", fnt12n));
 
 			String txt = "\n\nJeœli coœ ma siê skoñczyæ to najpierw musia³o siê zacz¹æ, nie mów, ¿e nie!";
@@ -95,6 +96,16 @@ public class PdfCwiczenia {
 			pdf.add(paragraph);
 			String str = "\n\nKoñ by siê uœmia³: br¹zowy Ÿrebak z¿ar³ ca³y sêkacz !";
 			pdf.add(new Paragraph(str + str.toUpperCase(), fnt10n));
+			
+			// My test implementation
+			pdf.add(
+					new Paragraph()
+					.setFont(fnt18n)
+					.add(new Text("The quick brown "))
+		            .add(new Image(ImageDataFactory.create(FOX)))
+		            .add(new Text(" jumps over the lazy "))
+		            .add(new Image(ImageDataFactory.create(DOG))));
+			pdf.add(paragraph);
 
 		} catch (DocumentException | IOException e) {
 			e.printStackTrace();
